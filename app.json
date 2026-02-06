@@ -1,19 +1,13 @@
 {
   "expo": {
-    "name": "RecipeFinderClean",
+    "name": "MealQuest",
     "slug": "RecipeFinderClean",
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "scheme": "mealquest",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    },
-    "ios": {
-      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -21,10 +15,20 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.akvsh.MealQuest"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a3e8358d-134f-44fe-a4ab-2566c8eebff0"
+      }
+    },
+    "owner": "akvsh",
+    "plugins": [
+      "expo-web-browser"
+    ]
   }
 }

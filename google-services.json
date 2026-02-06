@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "165589836657",
+    "project_id": "exponotify-dc9a7",
+    "storage_bucket": "exponotify-dc9a7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165589836657:android:2ea6d464c04a4f868c8cd0",
+        "android_client_info": {
+          "package_name": "com.akvsh.MealQuest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165589836657-msjetu839c9j1ak6ab1fombqn9osld7f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA64GONJdiVorF0_jZF-kHVR0Fs6sQ1xag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165589836657-msjetu839c9j1ak6ab1fombqn9osld7f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165589836657:android:bb53e6e19faf1e858c8cd0",
+        "android_client_info": {
+          "package_name": "com.kaizenn.basicform"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165589836657-msjetu839c9j1ak6ab1fombqn9osld7f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA64GONJdiVorF0_jZF-kHVR0Fs6sQ1xag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165589836657-msjetu839c9j1ak6ab1fombqn9osld7f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
