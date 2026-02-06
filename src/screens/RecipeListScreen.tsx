@@ -18,6 +18,7 @@ import { useNavigation, DrawerActions } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { auth } from '../firebaseConfig';
 import { signOut } from 'firebase/auth';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type DrawerProps = DrawerScreenProps<DrawerParamList, 'Recipes'>;
 type StackProps = NativeStackScreenProps<RootStackParamList>;
@@ -178,143 +179,147 @@ export default function RecipeListScreen(_props: Props) {
     };
 
     return (
-        <View style={styles.container}>
-            {/* Top app bar */}
-            <View style={styles.topBar}>
-                <View style={styles.topLeft}>
-                    <TouchableOpacity
-                        style={styles.menuButton}
-                        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-                    >
-                        <Text style={styles.menuIcon}>☰</Text>
-                    </TouchableOpacity>
-                    <View>
-                        <Text style={styles.appName}>MealQuest</Text>
-                        <Text style={styles.appTagline}>Discover recipes for what you have</Text>
-                    </View>
-                </View>
-
-                <View style={styles.topRight}>
-                    <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-                        <Text style={styles.logoutText}>Logout</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-
-            <ScrollView
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={false}
-            >
-
-                {/* Search section */}
-                <Text style={styles.greeting}>Good evening, foodie 👋</Text>
-                <Text style={styles.subtitle}>What would you like to cook today?</Text>
-
-                <View style={styles.searchRow}>
-                    <TextInput
-                        style={styles.searchInput}
-                        placeholder="Search recipes (e.g. biryani, pasta)"
-                        placeholderTextColor="#6b7280"
-                        value={query}
-                        onChangeText={setQuery}
-                        onSubmitEditing={onSearchPress}
-                    />
-                    <TouchableOpacity style={styles.searchButton} onPress={onSearchPress}>
-                        <Text style={styles.searchButtonText}>Search</Text>
-                    </TouchableOpacity>
-                </View>
-
-                {/* Quick filters */}
-                <View style={styles.chipRow}>
-                    {QUICK_FILTERS.map(label => {
-                        const active = activeFilter === label;
-                        return (
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#020617' }}>
+            {
+                <View style={styles.container}>
+                    {/* Top app bar */}
+                    <View style={styles.topBar}>
+                        <View style={styles.topLeft}>
                             <TouchableOpacity
-                                key={label}
-                                style={[styles.chip, active && styles.chipActive]}
-                                onPress={() => onFilterPress(label)}
+                                style={styles.menuButton}
+                                onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
                             >
-                                <Text style={[styles.chipText, active && styles.chipTextActive]}>
-                                    {label}
-                                </Text>
+                                <Text style={styles.menuIcon}>☰</Text>
                             </TouchableOpacity>
-                        );
-                    })}
-                </View>
-
-                {/* Featured random meal */}
-                {randomMeal && (
-                    <TouchableOpacity
-                        style={styles.featuredCard}
-                        onPress={() => onOpenMeal(randomMeal)}
-                    >
-                        <Image source={{ uri: randomMeal.strMealThumb }} style={styles.featuredImage} />
-                        <View style={styles.featuredOverlay} />
-                        <View style={styles.featuredContent}>
-                            <Text style={styles.featuredLabel}>Chef’s pick</Text>
-                            <Text style={styles.featuredTitle} numberOfLines={1}>
-                                {randomMeal.strMeal}
-                            </Text>
-                            <Text style={styles.featuredMeta}>
-                                {randomMeal.strCategory} · {randomMeal.strArea}
-                            </Text>
+                            <View>
+                                <Text style={styles.appName}>MealQuest</Text>
+                                <Text style={styles.appTagline}>Discover recipes for what you have</Text>
+                            </View>
                         </View>
-                    </TouchableOpacity>
-                )}
 
-                {/* Results header */}
-                <View style={styles.sectionHeader}>
-                    <Text style={styles.sectionTitle}>Results</Text>
-                    {loading && <ActivityIndicator color="#f97316" size="small" />}
-                </View>
-
-                {!loading && meals.length === 0 && (
-                    <View style={styles.emptyState}>
-                        <Text style={styles.emptyTitle}>No recipes found</Text>
-                        <Text style={styles.emptyText}>
-                            Try searching for a different ingredient or cuisine.
-                        </Text>
+                        <View style={styles.topRight}>
+                            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+                                <Text style={styles.logoutText}>Logout</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                )}
 
-                {/* Results list */}
-                <FlatList
-                    data={meals}
-                    keyExtractor={item => item.idMeal}
-                    scrollEnabled={false}
-                    ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity style={styles.card} onPress={() => onOpenMeal(item)}>
-                            <Image source={{ uri: item.strMealThumb }} style={styles.thumb} />
-                            <View style={styles.cardInfo}>
-                                <Text style={styles.cardTitle} numberOfLines={2}>
-                                    {item.strMeal}
-                                </Text>
-                                <Text style={styles.cardMeta}>
-                                    {item.strCategory} · {item.strArea}
-                                </Text>
-                                <View style={styles.cardFooter}>
-                                    <Text style={styles.cardTag}>View details</Text>
+                    <ScrollView
+                        contentContainerStyle={styles.scrollContent}
+                        showsVerticalScrollIndicator={false}
+                    >
+
+                        {/* Search section */}
+                        <Text style={styles.greeting}>Good evening, foodie 👋</Text>
+                        <Text style={styles.subtitle}>What would you like to cook today?</Text>
+
+                        <View style={styles.searchRow}>
+                            <TextInput
+                                style={styles.searchInput}
+                                placeholder="Search recipes (e.g. biryani, pasta)"
+                                placeholderTextColor="#6b7280"
+                                value={query}
+                                onChangeText={setQuery}
+                                onSubmitEditing={onSearchPress}
+                            />
+                            <TouchableOpacity style={styles.searchButton} onPress={onSearchPress}>
+                                <Text style={styles.searchButtonText}>Search</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        {/* Quick filters */}
+                        <View style={styles.chipRow}>
+                            {QUICK_FILTERS.map(label => {
+                                const active = activeFilter === label;
+                                return (
                                     <TouchableOpacity
-                                        onPress={() => toggleFavorite(item.idMeal)}
-                                        hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                                        key={label}
+                                        style={[styles.chip, active && styles.chipActive]}
+                                        onPress={() => onFilterPress(label)}
                                     >
-                                        <Text
-                                            style={[
-                                                styles.favIcon,
-                                                item.isFavorite && styles.favIconActive,
-                                            ]}
-                                        >
-                                            {item.isFavorite ? '♥ Saved' : '♡ Save'}
+                                        <Text style={[styles.chipText, active && styles.chipTextActive]}>
+                                            {label}
                                         </Text>
                                     </TouchableOpacity>
+                                );
+                            })}
+                        </View>
+
+                        {/* Featured random meal */}
+                        {randomMeal && (
+                            <TouchableOpacity
+                                style={styles.featuredCard}
+                                onPress={() => onOpenMeal(randomMeal)}
+                            >
+                                <Image source={{ uri: randomMeal.strMealThumb }} style={styles.featuredImage} />
+                                <View style={styles.featuredOverlay} />
+                                <View style={styles.featuredContent}>
+                                    <Text style={styles.featuredLabel}>Chef’s pick</Text>
+                                    <Text style={styles.featuredTitle} numberOfLines={1}>
+                                        {randomMeal.strMeal}
+                                    </Text>
+                                    <Text style={styles.featuredMeta}>
+                                        {randomMeal.strCategory} · {randomMeal.strArea}
+                                    </Text>
                                 </View>
+                            </TouchableOpacity>
+                        )}
+
+                        {/* Results header */}
+                        <View style={styles.sectionHeader}>
+                            <Text style={styles.sectionTitle}>Results</Text>
+                            {loading && <ActivityIndicator color="#f97316" size="small" />}
+                        </View>
+
+                        {!loading && meals.length === 0 && (
+                            <View style={styles.emptyState}>
+                                <Text style={styles.emptyTitle}>No recipes found</Text>
+                                <Text style={styles.emptyText}>
+                                    Try searching for a different ingredient or cuisine.
+                                </Text>
                             </View>
-                        </TouchableOpacity>
-                    )}
-                />
-            </ScrollView>
-        </View>
+                        )}
+
+                        {/* Results list */}
+                        <FlatList
+                            data={meals}
+                            keyExtractor={item => item.idMeal}
+                            scrollEnabled={false}
+                            ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity style={styles.card} onPress={() => onOpenMeal(item)}>
+                                    <Image source={{ uri: item.strMealThumb }} style={styles.thumb} />
+                                    <View style={styles.cardInfo}>
+                                        <Text style={styles.cardTitle} numberOfLines={2}>
+                                            {item.strMeal}
+                                        </Text>
+                                        <Text style={styles.cardMeta}>
+                                            {item.strCategory} · {item.strArea}
+                                        </Text>
+                                        <View style={styles.cardFooter}>
+                                            <Text style={styles.cardTag}>View details</Text>
+                                            <TouchableOpacity
+                                                onPress={() => toggleFavorite(item.idMeal)}
+                                                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                                            >
+                                                <Text
+                                                    style={[
+                                                        styles.favIcon,
+                                                        item.isFavorite && styles.favIconActive,
+                                                    ]}
+                                                >
+                                                    {item.isFavorite ? '♥ Saved' : '♡ Save'}
+                                                </Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            )}
+                        />
+                    </ScrollView>
+                </View>
+            }
+        </SafeAreaView>
     );
 }
 

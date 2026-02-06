@@ -1,12 +1,15 @@
 # MealQuest 🍽️
 
-MealQuest is a React Native (Expo) recipe app that lets you search meals from [TheMealDB](https://www.themealdb.com/) API, view detailed ingredients and step‑by‑step instructions, save favourite recipes, and sign in with Firebase using email/password, Google, or as a guest. [web:392][web:488]
+MealQuest is a React Native (Expo) recipe app that lets you search meals from TheMealDB(https://www.themealdb.com/) API, view detailed ingredients and step‑by‑step instructions, save favourite recipes, and sign in with Firebase using email/password, Google, or as a guest. 
 
+## Dowload
+
+- [Download Android APK](https://expo.dev/artifacts/eas/72WukhEKWUosV2r3AEGXEv.apk)
 ---
 
 ## Features
 
-- 🔍 Search recipes by name (e.g. “biryani”, “pasta”) using TheMealDB API. [web:392]
+- 🔍 Search recipes by name (e.g. “biryani”, “pasta”) using TheMealDB API. 
 - 🧾 Detailed recipe view with ingredients list and numbered step‑by‑step instructions.
 - ⭐ Favourites system (per‑user) stored locally via AsyncStorage with Firebase `uid`‑scoped keys.
 - 📂 Drawer navigation with:
@@ -16,19 +19,19 @@ MealQuest is a React Native (Expo) recipe app that lets you search meals from [T
 - 👤 Authentication with Firebase:
   - Email/password
   - Google sign‑in
-  - Anonymous “Continue as guest” login. [web:467][web:481]
-- 👋 Onboarding screens shown only on first launch (AsyncStorage flag). [web:457]
-- 🎨 Custom dark UI, custom app icon, and splash. [web:440]
+  - Anonymous “Continue as guest” login. 
+- 👋 Onboarding screens shown only on first launch (AsyncStorage flag). 
+- 🎨 Custom dark UI, custom app icon, and splash. 
 
 ---
 
 ## Tech Stack
 
-- **Frontend**: React Native (Expo managed workflow). [web:427]
-- **Navigation**: React Navigation (Native Stack + Drawer). [web:300]
-- **Auth**: Firebase Authentication (email/password, Google, anonymous). [web:467][web:481]
-- **Data**: TheMealDB public REST API for recipes. [web:392]
-- **Storage**: AsyncStorage for favourites and onboarding flag. [web:350]
+- **Frontend**: React Native (Expo managed workflow). 
+- **Navigation**: React Navigation (Native Stack + Drawer). 
+- **Auth**: Firebase Authentication (email/password, Google, anonymous). 
+- **Data**: TheMealDB public REST API for recipes. 
+- **Storage**: AsyncStorage for favourites and onboarding flag. 
 
 ---
 
@@ -49,7 +52,7 @@ npm install
 yarn install
 ```
 
-Make sure you have the Expo CLI / EAS CLI set up if you plan to build native binaries. [web:427][web:438]
+Make sure you have the Expo CLI / EAS CLI set up if you plan to build native binaries. :427:438
 
 ### 3. Configure Firebase
 
@@ -93,7 +96,7 @@ export const auth = authInstance;
 export { app };
 ```
 
-In the Firebase console, enable these sign‑in methods under **Authentication → Sign-in method**: [web:467][web:481]
+In the Firebase console, enable these sign‑in methods under **Authentication → Sign-in method**: 
 
 - Email/Password  
 - Google  
@@ -122,13 +125,13 @@ Point to your icon/splash assets in `app.json` (paths may differ):
       },
       "package": "com.<yourname>.mealquest"
     },
-    "web": {
+    "": {
       "favicon": "./assets/favicon.png"
     }
   }
 }
 ```
-[web:440][web:454]
+
 
 ### 5. Run in development
 
@@ -145,8 +148,8 @@ Scan the QR code with Expo Go on Android, or run on an emulator/simulator.
 - Favourites are stored in AsyncStorage under a per‑user key:
   - `mealquest:favorites:<uid>` for signed‑in users
   - `mealquest:favorites:guest` for anonymous users
-- The favourites screen re-fetches meal details from TheMealDB by ID. [web:392]
-- Onboarding uses a boolean flag `mealquest:onboarded` to show intro slides only once. [web:457]
+- The favourites screen re-fetches meal details from TheMealDB by ID. 
+- Onboarding uses a boolean flag `mealquest:onboarded` to show intro slides only once. 
 
 ---
 
@@ -175,15 +178,14 @@ This project uses **EAS Build**.
   }
 }
 ```
-[web:432][web:433]
 
-2. Run:
+1. Run:
 
 ```bash
 eas build -p android --profile preview
 ```
 
-Download the APK from the Expo build page and install it on your device. [web:426][web:438]
+Download the APK from the Expo build page and install it on your device. 
 
 ---
 
@@ -214,13 +216,7 @@ Download the APK from the Expo build page and install it on your device. [web:42
 
 ## Possible Improvements
 
-- Sync favourites to Firestore so they are shared across devices per user. [web:492][web:494]
-- Real dark/light theme using React Context and Expo color themes. [web:463]
-- Ingredient‑based search (“cook with what I have”) and AI‑generated recipe suggestions. [web:388][web:389]
-
+- Sync favourites to Firestore so they are shared across devices per user.
+- Real dark/light theme using React Context and Expo color themes. 
+- Ingredient‑based search (“cook with what I have”) and AI‑generated recipe suggestions. 
 ---
-
-## License
-
-Add your preferred license here (e.g. MIT).
-```

@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import LoginScreen from './src/screens/LoginScreen';
 import RecipeListScreen from './src/screens/RecipeListScreen';
@@ -82,36 +83,50 @@ export default function App() {
 
   if (checkingOnboard) {
     return (
-      <View style={{ flex: 1, backgroundColor: '#020617', justifyContent: 'center', alignItems: 'center' }}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#020617',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         <ActivityIndicator color="#f97316" />
       </View>
     );
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={showOnboarding ? 'Onboarding' : 'Login'}>
-        {showOnboarding && (
-          <Stack.Screen name="Onboarding">
-            {props => (
-              <OnboardingScreen
-                {...props}
-                onDone={async () => {
-                  await AsyncStorage.setItem(ONBOARD_KEY, '1');
-                  setShowOnboarding(false);
-                }}
-              />
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#020617' }}>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{ headerShown: false }}
+            initialRouteName={showOnboarding ? 'Onboarding' : 'Login'}
+          >
+            {showOnboarding && (
+              <Stack.Screen name="Onboarding">
+                {props => (
+                  <OnboardingScreen
+                    {...props}
+                    onDone={async () => {
+                      await AsyncStorage.setItem(ONBOARD_KEY, '1');
+                      setShowOnboarding(false);
+                    }}
+                  />
+                )}
+              </Stack.Screen>
             )}
-          </Stack.Screen>
-        )}
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Main" component={MainDrawer} />
-        <Stack.Screen
-          name="RecipeDetail"
-          component={RecipeDetailScreen}
-          options={({ route }) => ({ title: route.params.strMeal })}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Main" component={MainDrawer} />
+            <Stack.Screen
+              name="RecipeDetail"
+              component={RecipeDetailScreen}
+              options={({ route }) => ({ title: route.params.strMeal })}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
