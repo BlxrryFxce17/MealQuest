@@ -1,4 +1,3 @@
-```markdown
 # MealQuest 🍽️
 
 MealQuest is a React Native (Expo) recipe app that lets you search meals from [TheMealDB](https://www.themealdb.com/) API, view detailed ingredients and step‑by‑step instructions, save favourite recipes, and sign in with Firebase using email/password, Google, or as a guest. [web:392][web:488]
@@ -18,8 +17,8 @@ MealQuest is a React Native (Expo) recipe app that lets you search meals from [T
   - Email/password
   - Google sign‑in
   - Anonymous “Continue as guest” login. [web:467][web:481]
-- 👋 Onboarding screens shown only on first launch (AsyncStorage flag).
-- 🎨 Custom dark UI, custom app icon, and splash.
+- 👋 Onboarding screens shown only on first launch (AsyncStorage flag). [web:457]
+- 🎨 Custom dark UI, custom app icon, and splash. [web:440]
 
 ---
 
@@ -98,7 +97,7 @@ In the Firebase console, enable these sign‑in methods under **Authentication �
 
 - Email/Password  
 - Google  
-- Anonymous
+- Anonymous  
 
 ### 4. Configure app.json
 
@@ -128,7 +127,7 @@ Point to your icon/splash assets in `app.json` (paths may differ):
     }
   }
 }
-```  
+```
 [web:440][web:454]
 
 ### 5. Run in development
@@ -220,3 +219,8 @@ Download the APK from the Expo build page and install it on your device. [web:42
 - Ingredient‑based search (“cook with what I have”) and AI‑generated recipe suggestions. [web:388][web:389]
 
 ---
+
+## License
+
+Add your preferred license here (e.g. MIT).
+```
